@@ -47,18 +47,45 @@ public class Node{
 	  public void printNode(){
 		  System.out.println("The small value is: " + this.smallItem + " the large value is: " + this.largeItem);
 	  }
-	  public int getElements(Node n){
+	  public int getElements(){
 		  int total = 0;
-		  if(n.getSmall() != -1 && n.getLarge() != -1){
+		  if(this.getSmall() != -1 && this.getLarge() != -1){
 			  total = 2;
 		  }
-		  else if(n.getSmall() == -1 || n.getLarge() != -1){
+		  else if(this.getSmall() == -1 || this.getLarge() != -1){
 			  total = 1;
 		  }
-		  else if(n.getSmall() == -1 && n.getLarge() == -1){
+		  else if(this.getSmall() == -1 && this.getLarge() == -1){
 			  total = 0;
 		  }
 		  return total;
 	  }
+	  public int numChildren(){
+			if(this.leftChild == null && this.rightChild == null && this.midChild == null){
+				return 0;
+			} 
+			else if(this.leftChild != null && this.rightChild == null && this.midChild == null) {
+				return 1;
+			}
+			else if(this.leftChild == null && this.rightChild != null && this.midChild == null){
+				return 1;
+			}
+			else if(this.leftChild == null && this.rightChild == null && this.midChild != null){
+				return 1;
+			}
+			else if(this.leftChild != null && this.rightChild == null && this.midChild != null){
+				return 2;
+			}
+			else if(this.leftChild != null && this.rightChild != null && this.midChild == null){
+				return 2;
+			}
+			else if(this.leftChild == null && this.rightChild != null && this.midChild != null){
+				return 2;
+			}
+			else if(this.leftChild != null && this.rightChild != null && this.midChild != null){
+				return 3;
+			}
+			return -1;
+		}
 }
 

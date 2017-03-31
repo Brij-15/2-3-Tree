@@ -63,27 +63,29 @@ public void insert(Node newNode){
 					focusNode.setLarge(newNode.getSmall());
 				}
 			} else { //node full
-				if(focusNode.getSmall() > newNode.getSmall()){
-					//ThreeNode largeN = new ThreeNode(newNode.getSmall(), focusNode.getSmall(), focusNode.getLarge(), null, null, null);
-					if(parent.getElements() == 2){
-						Node n1 = new Node(focusNode.getSmall(),-1,null,null,null);
-						Node n2 = new Node(focusNode.getLarge(), -1,null,null,null);
-						Node n3 = new Node(newNode.getSmall(), -1, null, null, null);
-						parent.leftChild = n1;
-						n1.leftChild = n3;
-						n1.rightChild = n2;
-					}
-				}
-				else if(focusNode.getSmall() < newNode.getSmall() && newNode.getSmall() < focusNode.getLarge()){
-					ThreeNode largeN = new ThreeNode(focusNode.getSmall(), newNode.getSmall(), focusNode.getLarge(), null,null,null); 
-				}
-				else if(focusNode.getSmall() < newNode.getSmall() && newNode.getSmall() > focusNode.getLarge()){
-					ThreeNode largeN = new ThreeNode(focusNode.getSmall(), focusNode.getLarge(), newNode.getSmall(), null,null,null);
-				}
+				ThreeNode t1 = combine(focusNode, newNode);
+				split(t1, parent);
 			}
 		}
 	}
 	
+}
+
+public void split(ThreeNode t1, Node parent){
+	
+}
+
+public ThreeNode combine(Node focusNode, Node newNode){
+	if(focusNode.getSmall() > newNode.getSmall()){
+			ThreeNode t1 = new ThreeNode(newNode.getSmall(),focusNode.getSmall(), focusNode.getLarge(),null,null,null);
+		}
+	else if(focusNode.getSmall() < newNode.getSmall() && newNode.getSmall() < focusNode.getLarge()){
+			ThreeNode t1 = new ThreeNode(focusNode.getSmall(), newNode.getSmall(), focusNode.getLarge(),null,null,null);
+	}
+	else if(focusNode.getSmall() < newNode.getSmall() && newNode.getSmall() > focusNode.getLarge()){
+		ThreeNode t1 = new ThreeNode(focusNode.getSmall(),focusNode.getLarge(), newNode.getSmall(),null,null,null);
+	}
+	return t1;
 }
 
 
