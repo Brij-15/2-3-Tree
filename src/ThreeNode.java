@@ -1,21 +1,27 @@
 
-public class Node{
-	 int smallItem;
-	  int largeItem;
-
-	  Node leftChild;
-	  Node midChild;
-	  Node rightChild;
-
-	  public Node(int small,int big,Node left,Node mid,Node right){
-	    this.smallItem = small;
-	    this.largeItem = big;
-	    this.leftChild = left;
-	    this.midChild = mid;
-	    this.rightChild = right;
-	  }
+public class ThreeNode {
+	int smallItem;
+	int largeItem;
+	int midItem;
+	
+	Node leftChild;
+	Node rightChild;
+	Node midChild;
+	
+	public ThreeNode(int small, int mid, int large, Node left, Node middle, Node right){
+		this.smallItem = small;
+		this.midItem = mid;
+		this.largeItem = large;
+		this.leftChild = left;
+		this.midChild = middle;
+		this.rightChild = right;
+	}
+	
 	  public int getSmall(){
 	    return this.smallItem;
+	  }
+	  public int getMidItem(){
+		  return this.midItem;
 	  }
 	  public int getLarge(){
 	    return this.largeItem;
@@ -32,6 +38,9 @@ public class Node{
 	  public void setSmall(int small){
 	    this.smallItem = small;
 	  }
+	  public void setMidItem(int middle){
+		  this.midItem = middle;
+	  }
 	  public void setLarge(int large){
 	    this.largeItem = large;
 	  }
@@ -44,21 +53,8 @@ public class Node{
 	  public void setRight(Node right){
 	    this.rightChild = right;
 	  }
-	  public void printNode(){
+	  public void printTnode(){
 		  System.out.println("The small value is: " + this.smallItem + " the large value is: " + this.largeItem);
 	  }
-	  public int getElements(Node n){
-		  int total = 0;
-		  if(n.getSmall() != -1 && n.getLarge() != -1){
-			  total = 2;
-		  }
-		  else if(n.getSmall() == -1 || n.getLarge() != -1){
-			  total = 1;
-		  }
-		  else if(n.getSmall() == -1 && n.getLarge() == -1){
-			  total = 0;
-		  }
-		  return total;
-	  }
+	
 }
-
