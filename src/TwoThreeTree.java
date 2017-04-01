@@ -8,6 +8,8 @@
  */
 public class TwoThreeTree{
 	Node root;
+	Node focusNode;
+	Node parent;
 	int maxElements = 2;
 	int maxChildren = 3;
 	boolean found = false;
@@ -26,8 +28,8 @@ public void insert(Node newNode){
 	if(root == null){
 		root = newNode;
 	}else{
-		Node focusNode = root;
-		Node parent = focusNode;
+		focusNode = root;
+		parent = focusNode;
 		while(found == false){
 			if(focusNode.getSmall() > newNode.getSmall()){//MOVE LEFT; checks if current key is greater than given key if it is move to the left
 					if(focusNode.numChildren() == 0){
@@ -72,22 +74,59 @@ public void insert(Node newNode){
 }
 
 public void split(ThreeNode t1, Node parent){
-	
+	if(parent.getElements() == 1){
+		parent.setLarge(parent.getSmall());
+		parent.setSmall(t1.getMidItem());
+		Node n1 = new Node(t1.getSmall(), -1, null, null,null);
+		Node n2 = new Node(t1.getLarge(), -1, null, null, null);
+		parent.setLeft(n1);
+		parent.setRight(n2);
+	}
+	if(parent.getElements() == 2){
+		
+	}
 }
 
 public ThreeNode combine(Node focusNode, Node newNode){
 	if(focusNode.getSmall() > newNode.getSmall()){
-			ThreeNode t1 = new ThreeNode(newNode.getSmall(),focusNode.getSmall(), focusNode.getLarge(),null,null,null);
+			ThreeNode t1 = new ThreeNode(newNode.getSmall(),focusNode.getSmall(), focusNode.getLarge(),null,null,null,null);
 		}
 	else if(focusNode.getSmall() < newNode.getSmall() && newNode.getSmall() < focusNode.getLarge()){
-			ThreeNode t1 = new ThreeNode(focusNode.getSmall(), newNode.getSmall(), focusNode.getLarge(),null,null,null);
+			ThreeNode t1 = new ThreeNode(focusNode.getSmall(), newNode.getSmall(), focusNode.getLarge(),null,null,null,null);
 	}
 	else if(focusNode.getSmall() < newNode.getSmall() && newNode.getSmall() > focusNode.getLarge()){
-		ThreeNode t1 = new ThreeNode(focusNode.getSmall(),focusNode.getLarge(), newNode.getSmall(),null,null,null);
+		ThreeNode t1 = new ThreeNode(focusNode.getSmall(),focusNode.getLarge(), newNode.getSmall(),null,null,null,null);
 	}
 	return t1;
 }
 
+public Node getParent(Node n){
+	Node temp = root;
+	while(true){
+		if(temp.getSmall() > n.getSmall()){
+			if(temp.getLeft() == n){
+				return temp;
+			} else {
+				temp = temp.leftChild;
+			}
+			
+		}
+		else if(temp.getSmall() < n.getSmall() && temp.getLarge() > n.getLarge()){
+			if(temp.getMid() == n){
+				return temp;
+			} else {
+				temp = temp.midChild;
+			}
+		}
+		else if(temp.getSmall() < n.getSmall() && temp.getLarge() < n.getLarge()){
+			if(temp.getRight() == n){
+				return temp;
+			} else {
+				temp = temp.rightChild;
+			}
+		}
+	}
+}
 
 
 public static void main(String [] args){

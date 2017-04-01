@@ -3,18 +3,20 @@ public class ThreeNode {
 	int smallItem;
 	int largeItem;
 	int midItem;
+	//left to right 
+	Node firstChild;
+	Node secondChild;
+	Node thirdChild;
+	Node fourthChild;
 	
-	Node leftChild;
-	Node rightChild;
-	Node midChild;
-	
-	public ThreeNode(int small, int mid, int large, Node left, Node middle, Node right){
+	public ThreeNode(int small, int mid, int large, Node first, Node second, Node third, Node fourth){
 		this.smallItem = small;
 		this.midItem = mid;
 		this.largeItem = large;
-		this.leftChild = left;
-		this.midChild = middle;
-		this.rightChild = right;
+		this.firstChild = first;
+		this.secondChild = second;
+		this.thirdChild = third;
+		this.fourthChild = fourth;
 	}
 	
 	  public int getSmall(){
@@ -26,14 +28,17 @@ public class ThreeNode {
 	  public int getLarge(){
 	    return this.largeItem;
 	  }
-	  public Node getLeft(){
-	    return this.leftChild;
+	  public Node getFirst(){
+	    return this.firstChild;
 	  }
-	  public Node getMid(){
-	    return this.midChild;
+	  public Node getSecond(){
+	    return this.secondChild;
 	  }
-	  public Node getRight(){
-	    return this.rightChild;
+	  public Node getThird(){
+	    return this.thirdChild;
+	  }
+	  public Node getFourth(){
+		  return this.fourthChild;
 	  }
 	  public void setSmall(int small){
 	    this.smallItem = small;
@@ -44,17 +49,20 @@ public class ThreeNode {
 	  public void setLarge(int large){
 	    this.largeItem = large;
 	  }
-	  public void setLeft(Node left){
-	    this.leftChild = left;
+	  public void setFirst(Node l){
+	    this.firstChild = l;
 	  }
-	  public void setMid(Node mid){
-	    this.midChild = mid;
+	  public void setSecond(Node m){
+	    this.secondChild = m;
 	  }
-	  public void setRight(Node right){
-	    this.rightChild = right;
+	  public void setThird(Node right){
+	    this.thirdChild = right;
+	  }
+	  public void setFourth(Node f){
+		  this.fourthChild = f;
 	  }
 	  public void printTnode(){
-		  System.out.println("The small value is: " + this.smallItem + " the large value is: " + this.largeItem);
+		  System.out.println("The small value is: " + this.smallItem + "The middle item is "+ this.midItem+" the large value is: " + this.largeItem);
 	  }
 	
 }
