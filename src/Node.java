@@ -48,7 +48,10 @@ public class Node{
 		  System.out.println("The small value is: " + this.smallItem + " the large value is: " + this.largeItem);
 	  }
 	  public int getElements(){
-		  if(this.getSmall() != -1 && this.getLarge() != -1){
+		  //if(total == 3){
+			//  total = 3;
+		  //}
+		   if(this.getSmall() != -1 && this.getLarge() != -1){
 			  total = 2;
 		  }
 		  else if(this.getSmall() == -1 || this.getLarge() != -1){
@@ -61,6 +64,9 @@ public class Node{
 	  }
 	  public void incElements(){
 		  total++;
+	  }
+	  public void setElements(int total){
+		  this.total = total;
 	  }
 	  public int numChildren(){
 			if(this.leftChild == null && this.rightChild == null && this.midChild == null){

@@ -71,8 +71,10 @@ public void insert(Node newNode){
 				if(focusNode.getSmall() > newNode.getSmall()){
 					focusNode.setLarge(focusNode.getSmall());
 					focusNode.setSmall(newNode.getSmall());
+					focusNode.incElements();
 				} else {
 					focusNode.setLarge(newNode.getSmall());
+					focusNode.incElements();
 				}
 			} else { //node full
 				if(parent.getElements() >= 1){
@@ -87,6 +89,14 @@ public void insert(Node newNode){
 }
 
 public void split(ThreeNode t1, Node parent){
+	/*if(parent == root){
+		Node n1 = new Node(t1.getSmall(),-1,null,null,null);
+		Node n2 = new Node(t1.getMidItem(),-1,null,null,null);
+		Node n3 = new Node(t1.getLarge(),-1,null,null,null);
+		root = n2;
+		root.leftChild = n1;
+		root.rightChild = n3;
+	}*/
 	if(parent.getElements() == 1){	
 	if(parent.getLarge() != -1){
 		parent.setLarge(parent.getSmall());
@@ -94,18 +104,25 @@ public void split(ThreeNode t1, Node parent){
 		if(parent.getLeft().getElements() == 3){
 			parent.setLarge(parent.getSmall());
 			parent.setSmall(t1.getMidItem());
+			
 		}else{
-		parent.setLarge(t1.getLarge());
+		parent.setLarge(t1.getMidItem());
+		parent.incElements();
 		}
 		Node n1 = new Node(t1.getSmall(), -1, null, null,null);
 		Node n2 = new Node(t1.getLarge(), -1, null, null, null);
-		parent.setLeft(n1);
+		parent.setMid(n1);
+		n1.incElements();
 		parent.setRight(n2);
-}
+		n2.incElements();
+	}
 	else if(parent.getElements() == 2){
 		if(parent.getRight() != null){
-		if(parent.getRight().getElements() == 3){
+			if(parent.getRight().getElements() == 2){
 			ThreeNode t2 = new ThreeNode(parent.getSmall(),parent.getLarge(),t1.getMidItem(),null,null,null,null);
+			Node n3 = new Node (t1.getSmall(), -1,null,null,null);
+			Node n4 = new Node(t1.getLarge(),-1,null,null,null);
+			//parent.getRight().setElements(1);
 			split(t2,getParent(root, parent));
 		}
 		}
@@ -139,16 +156,18 @@ public Node getParent(Node c, Node find){
 	     }
 	  
 	     else{
-	       if(find.getSmall() < c.getSmall()){
+	       if(find.getSmall() < c.getSmall() && c.getLeft() != null){
 	        return getParent(c.getLeft(), find);
 	        }
-	      else if(find.getSmall() < c.getLarge()){
+	      else if(find.getSmall() < c.getSmall() && find.getLarge() < c.getLarge() && c.getMid() != null){
 	        return getParent(c.getMid(), find);
 	        }
-	      else{
+	      else if(find.getSmall() < c.getLarge() && c.getRight() != null ){
 	        return getParent(c.getRight(), find);
 	        }
 	     }
+		return find;
+	  
 	   }
 
 public ThreeNode combine(Node focusNode, Node newNode){
@@ -173,10 +192,16 @@ Node n1 = new Node(0,-1,null,null,null);
 t.insert(n1);
 t.inOrderTraversal(n1);
 Node n2 = new Node(1, -1, null,null,null);
-t.insert(n2); //works till here
+t.insert(n2); //works
 Node n3 = new Node(2,-1,null,null,null);
-t.insert(n3);
+t.insert(n3);//works
 Node n4 = new Node(3,-1,null,null,null);
-t.insert(n4);
+t.insert(n4);//works
+Node n5 = new Node(4,-1,null,null,null);
+t.insert(n5);//works
+Node n6 = new Node(5,-1,null,null,null);
+t.insert(n6);//works
+Node n7 = new Node(6,-1,null,null,null);
+t.insert(n7);
 }//ends main
 }
