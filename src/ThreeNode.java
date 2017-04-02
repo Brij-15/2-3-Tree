@@ -1,5 +1,5 @@
 
-public class ThreeNode {
+public class ThreeNode{
 	int smallItem;
 	int largeItem;
 	int midItem;

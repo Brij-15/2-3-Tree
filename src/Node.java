@@ -2,7 +2,7 @@
 public class Node{
 	 int smallItem;
 	  int largeItem;
-
+	  int total = 0;
 	  Node leftChild;
 	  Node midChild;
 	  Node rightChild;
@@ -48,7 +48,6 @@ public class Node{
 		  System.out.println("The small value is: " + this.smallItem + " the large value is: " + this.largeItem);
 	  }
 	  public int getElements(){
-		  int total = 0;
 		  if(this.getSmall() != -1 && this.getLarge() != -1){
 			  total = 2;
 		  }
@@ -59,6 +58,9 @@ public class Node{
 			  total = 0;
 		  }
 		  return total;
+	  }
+	  public void incElements(){
+		  total++;
 	  }
 	  public int numChildren(){
 			if(this.leftChild == null && this.rightChild == null && this.midChild == null){
@@ -87,5 +89,6 @@ public class Node{
 			}
 			return -1;
 		}
+	  
 }
 
