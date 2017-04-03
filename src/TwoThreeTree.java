@@ -4,7 +4,7 @@
  * @author Brij Patel 101008373
  * As a convention we will always put the value to be inserted into the small value of the node
  * -1 means that there is no value in that spot.
- *
+ *Split works but nodes arn't getting assigned properly I dont know how to fix it. n7 is the point where it stops working
  */
 public class TwoThreeTree{
 	Node root;
@@ -112,13 +112,13 @@ public void split(ThreeNode t1, Node parent){
 		parent.setRight(n2);
 	}
 	else if(parent.getElements() == 2){
-		if(parent.getRight() != null){
-			if(parent.getRight().getElements() == 3 && parent != root){
+		if(parent.getRight().getElements() == 3|| parent.getMid().getElements() == 3 || parent.getLeft().getElements() == 3){
+		   if(parent.getRight() != null){
 			ThreeNode t2 = new ThreeNode(parent.getSmall(),parent.getLarge(),t1.getMidItem(),null,null,null,null);
 			Node n3 = new Node (t1.getSmall(), -1,null,null,null);
 			Node n4 = new Node(t1.getLarge(),-1,null,null,null);
+			getParent(root,parent).incElements();
 			split(t2,getParent(root, parent));
-		}
 		}
 		else if(parent.getLeft() != null){
 			if(parent.getLeft().getElements() == 3){
@@ -131,10 +131,11 @@ public void split(ThreeNode t1, Node parent){
 			}
 		}
 	}
-	else if(parent == root){
-		Node n1 = new Node(t1.getSmall(),-1,null,null,null);
-		Node n2 = new Node(t1.getMidItem(),-1,null,null,null);
-		Node n3 = new Node(t1.getLarge(),-1,null,null,null);
+	}
+	else if(parent == root && parent.getElements() == 3){
+		Node n1 = new Node(t1.getSmall(),-1,parent.getLeft(),null,);
+		Node n2 = new Node(t1.getMidItem(),-1,null,parent.getMid(),null);
+		Node n3 = new Node(t1.getLarge(),-1,null,null,parent.getRight());
 		root = n2;
 		root.setLeft(n1);
 		root.setRight(n3);
@@ -194,5 +195,9 @@ Node n6 = new Node(5,-1,null,null,null);
 t.insert(n6);//works
 Node n7 = new Node(6,-1,null,null,null);
 t.insert(n7);
+Node n8 = new Node(7,-1,null,null,null);
+t.insert(n8);
+Node n9 = new Node(8,-1,null,null,null);
+t.insert(n9);
 }//ends main
 }
