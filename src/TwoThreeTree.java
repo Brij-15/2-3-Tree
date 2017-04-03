@@ -71,10 +71,8 @@ public void insert(Node newNode){
 				if(focusNode.getSmall() > newNode.getSmall()){
 					focusNode.setLarge(focusNode.getSmall());
 					focusNode.setSmall(newNode.getSmall());
-					focusNode.incElements();
 				} else {
 					focusNode.setLarge(newNode.getSmall());
-					focusNode.incElements();
 				}
 			} else { //node full
 				if(parent.getElements() >= 1){
@@ -107,22 +105,18 @@ public void split(ThreeNode t1, Node parent){
 			
 		}else{
 		parent.setLarge(t1.getMidItem());
-		parent.incElements();
 		}
 		Node n1 = new Node(t1.getSmall(), -1, null, null,null);
 		Node n2 = new Node(t1.getLarge(), -1, null, null, null);
 		parent.setMid(n1);
-		n1.incElements();
 		parent.setRight(n2);
-		n2.incElements();
 	}
 	else if(parent.getElements() == 2){
 		if(parent.getRight() != null){
-			if(parent.getRight().getElements() == 2){
+			if(parent.getRight().getElements() == 3 && parent != root){
 			ThreeNode t2 = new ThreeNode(parent.getSmall(),parent.getLarge(),t1.getMidItem(),null,null,null,null);
 			Node n3 = new Node (t1.getSmall(), -1,null,null,null);
 			Node n4 = new Node(t1.getLarge(),-1,null,null,null);
-			//parent.getRight().setElements(1);
 			split(t2,getParent(root, parent));
 		}
 		}
@@ -136,17 +130,14 @@ public void split(ThreeNode t1, Node parent){
 				
 			}
 		}
-		else if(parent == root){
-			Node n1 = new Node(t1.getSmall(),-1,null,null,null);
-			Node n2 = new Node(t1.getMidItem(),-1,null,null,null);
-			Node n3 = new Node(t1.getLarge(),-1,null,null,null);
-			root = n2;
-			root.incElements();
-			root.leftChild = n1;
-			n1.incElements();
-			root.rightChild = n3;
-			n3.incElements();
-		}
+	}
+	else if(parent == root){
+		Node n1 = new Node(t1.getSmall(),-1,null,null,null);
+		Node n2 = new Node(t1.getMidItem(),-1,null,null,null);
+		Node n3 = new Node(t1.getLarge(),-1,null,null,null);
+		root = n2;
+		root.setLeft(n1);
+		root.setRight(n3);
 	}
 }
 
@@ -190,7 +181,7 @@ System.out.println("hello");
 TwoThreeTree t = new TwoThreeTree();
 Node n1 = new Node(0,-1,null,null,null);
 t.insert(n1);
-t.inOrderTraversal(n1);
+//t.inOrderTraversal(n1);
 Node n2 = new Node(1, -1, null,null,null);
 t.insert(n2); //works
 Node n3 = new Node(2,-1,null,null,null);
@@ -198,7 +189,7 @@ t.insert(n3);//works
 Node n4 = new Node(3,-1,null,null,null);
 t.insert(n4);//works
 Node n5 = new Node(4,-1,null,null,null);
-t.insert(n5);//works
+t.insert(n5);//
 Node n6 = new Node(5,-1,null,null,null);
 t.insert(n6);//works
 Node n7 = new Node(6,-1,null,null,null);

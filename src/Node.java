@@ -13,6 +13,7 @@ public class Node{
 	    this.leftChild = left;
 	    this.midChild = mid;
 	    this.rightChild = right;
+	    total++;
 	  }
 	  public int getSmall(){
 	    return this.smallItem;
@@ -31,9 +32,15 @@ public class Node{
 	  }
 	  public void setSmall(int small){
 	    this.smallItem = small;
+	    if(total == 1){
+	    	total = total + 1;
+	    }
 	  }
 	  public void setLarge(int large){
 	    this.largeItem = large;
+	    if(total == 1){
+	    	total = total + 1;
+	    }
 	  }
 	  public void setLeft(Node left){
 	    this.leftChild = left;
@@ -51,7 +58,7 @@ public class Node{
 		  //if(total == 3){
 			//  total = 3;
 		  //}
-		   if(this.getSmall() != -1 && this.getLarge() != -1){
+		  /* if(this.getSmall() != -1 && this.getLarge() != -1){
 			  total = 2;
 		  }
 		  else if(this.getSmall() == -1 || this.getLarge() != -1){
@@ -59,14 +66,14 @@ public class Node{
 		  }
 		  else if(this.getSmall() == -1 && this.getLarge() == -1){
 			  total = 0;
-		  }
+		  }*/
 		  return total;
 	  }
 	  public void incElements(){
 		  total++;
 	  }
-	  public void setElements(int total){
-		  this.total = total;
+	  public void decElements(){
+		  total--;
 	  }
 	  public int numChildren(){
 			if(this.leftChild == null && this.rightChild == null && this.midChild == null){
